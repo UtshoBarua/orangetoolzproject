@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+
+</head>
+<body>
+    <form onsubmit="return fetchcall()">
+        <input type="text" id="name" value="john">
+        <input type="text" id="email" value="john@example.com">
+        <input type="submit" id="button"  value="Go">
+        
+    </form>
+    
+
+</body>
+<script>
+    function fetchcall(){
+        var data = new URLSearchParams();
+        data.append("name",document.getElementById("name").value);
+        data.append("email",document.getElementById("email").value);
+        fetch("dummy.php",{
+            method: "post",
+            body : data
+        })
+        .then (function(response) {
+            return response.text();
+        })
+        .then (function(text){
+            console.log(text);
+        })
+        .catch (function(err){
+            console.log(err);
+        });
+        return false;
+    }
+
+</script>
+</html>
